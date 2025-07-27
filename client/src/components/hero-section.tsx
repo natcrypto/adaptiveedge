@@ -1,7 +1,47 @@
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import { useState, useEffect } from "react";
+
+interface Particle {
+  id: number;
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  size: number;
+  color: string;
+  opacity: number;
+}
 
 export default function HeroSection() {
+  const [particles, setParticles] = useState<Particle[]>([]);
+  
+  useEffect(() => {
+    // Initialize particles in clusters for more natural flocking
+    const initialParticles: Particle[] = [];
+    
+    // Create 3 clusters
+    for (let cluster = 0; cluster < 3; cluster++) {
+      const clusterX = 250 + cluster * 200;
+      const clusterY = 200 + cluster * 50;
+      
+      for (let i = 0; i < 7; i++) {
+        initialParticles.push({
+          id: cluster * 7 + i,
+          x: clusterX + (Math.random() - 0.5) * 100,
+          y: clusterY + (Math.random() - 0.5) * 80,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
+          size: 4 + Math.random() * 3,
+          color: Math.random() > 0.5 ? 'coral' : 'navy',
+          opacity: 0.15 + Math.random() * 0.25,
+        });
+      }
+    }
+    
+    setParticles(initialParticles);
+  }, []);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -53,40 +93,44 @@ export default function HeroSection() {
 
         {/* Murmuration Animation */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none hidden lg:block">
-          {Array.from({ length: 15 }).map((_, i) => {
-            const size = Math.random() > 0.5 ? 'w-2 h-2' : 'w-1.5 h-1.5';
-            const color = Math.random() > 0.6 ? 'bg-coral' : 'bg-navy';
-            const opacity = Math.random() > 0.5 ? 'opacity-20' : 'opacity-30';
-            const startX = 100 + Math.random() * 800;
-            const startY = 100 + Math.random() * 400;
+          {particles.map((particle) => {
+            // Create flocking movement based on neighboring particles
+            const cluster = Math.floor(particle.id / 7);
+            const baseAngle = cluster * (Math.PI * 2 / 3);
+            const timeOffset = particle.id * 0.3;
             
             return (
               <motion.div
-                key={i}
-                className={`absolute ${size} ${color} rounded-full ${opacity}`}
-                initial={{
-                  x: startX,
-                  y: startY,
+                key={particle.id}
+                className={`absolute rounded-full ${
+                  particle.color === 'coral' ? 'bg-coral' : 'bg-navy'
+                }`}
+                style={{
+                  width: particle.size,
+                  height: particle.size,
+                  opacity: particle.opacity,
                 }}
                 animate={{
                   x: [
-                    startX,
-                    startX + (Math.random() - 0.5) * 300,
-                    startX + (Math.random() - 0.5) * 400,
-                    startX,
+                    particle.x,
+                    particle.x + Math.sin(baseAngle + timeOffset) * 60 + Math.sin(timeOffset * 0.5) * 30,
+                    particle.x + Math.sin(baseAngle + timeOffset + Math.PI / 3) * 80 + Math.cos(timeOffset * 0.3) * 25,
+                    particle.x + Math.sin(baseAngle + timeOffset + Math.PI / 2) * 50 + Math.sin(timeOffset * 0.7) * 35,
+                    particle.x,
                   ],
                   y: [
-                    startY,
-                    startY + (Math.random() - 0.5) * 200,
-                    startY + (Math.random() - 0.5) * 300,
-                    startY,
+                    particle.y,
+                    particle.y + Math.cos(baseAngle + timeOffset) * 40 + Math.cos(timeOffset * 0.6) * 20,
+                    particle.y + Math.cos(baseAngle + timeOffset + Math.PI / 3) * 60 + Math.sin(timeOffset * 0.4) * 15,
+                    particle.y + Math.cos(baseAngle + timeOffset + Math.PI / 2) * 35 + Math.cos(timeOffset * 0.8) * 25,
+                    particle.y,
                   ],
                 }}
                 transition={{
-                  duration: 12 + Math.random() * 8,
+                  duration: 12 + cluster * 2,
                   repeat: Infinity,
                   ease: "easeInOut",
-                  delay: i * 0.3,
+                  delay: particle.id * 0.15,
                 }}
               />
             );
