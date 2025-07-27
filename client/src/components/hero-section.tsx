@@ -27,7 +27,7 @@ export default function HeroSection() {
         y: 100 + Math.random() * 350,
         vx: (Math.random() - 0.5) * 2,
         vy: (Math.random() - 0.5) * 2,
-        size: 3 + Math.random() * 4,
+        size: 8 + Math.random() * 8,
         color: Math.random() > 0.6 ? 'coral' : 'navy',
         opacity: 0.2 + Math.random() * 0.3,
       });
