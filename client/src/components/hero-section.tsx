@@ -88,40 +88,34 @@ export default function HeroSection() {
         {/* Murmuration Animation */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none hidden lg:block">
           {particles.map((particle, index) => {
-            // True emergent flocking behavior with 3 rules:
-            // 1. Separation - avoid crowding neighbors
-            // 2. Alignment - steer towards average heading of neighbors  
-            // 3. Cohesion - steer towards average position of neighbors
+            // Create sweeping flight patterns across the hero space
+            const time = particle.id * 0.1;
+            const flockPhase = particle.id * 0.2;
             
-            const time = Date.now() * 0.001;
-            const phaseOffset = particle.id * 0.15;
+            // Create leaders that initiate direction changes
+            const isLeader = particle.id % 10 === 0;
+            const leaderStrength = isLeader ? 1.3 : 1.0;
             
-            // Create emergent leaders that influence the flock
-            const isLeader = particle.id % 8 === 0;
-            const leaderInfluence = isLeader ? 1.5 : 1.0;
+            // Large sweeping movements across the hero area
+            const sweepRadius = 180 * leaderStrength;
+            const sweepX = Math.sin(time + flockPhase) * sweepRadius;
+            const sweepY = Math.cos(time + flockPhase * 0.7) * (sweepRadius * 0.6);
             
-            // Separation force - avoid getting too close to others
-            const separationX = Math.sin(time * 2 + phaseOffset) * 80 * leaderInfluence;
-            const separationY = Math.cos(time * 1.8 + phaseOffset) * 60 * leaderInfluence;
+            // Secondary orbital movement for flocking behavior
+            const orbitRadius = 40 + (particle.id % 5) * 8;
+            const orbitX = Math.sin(time * 1.5 + flockPhase) * orbitRadius;
+            const orbitY = Math.cos(time * 1.2 + flockPhase) * (orbitRadius * 0.7);
             
-            // Alignment force - follow the general direction of nearby particles
-            const alignmentX = Math.sin(time * 1.2 + phaseOffset + Math.PI/4) * 100;
-            const alignmentY = Math.cos(time * 1.4 + phaseOffset + Math.PI/6) * 70;
-            
-            // Cohesion force - stay with the group
-            const cohesionX = Math.sin(time * 0.8 + phaseOffset + Math.PI/2) * 60;
-            const cohesionY = Math.cos(time * 0.9 + phaseOffset + Math.PI/3) * 40;
-            
-            // Combine all forces for emergent behavior
-            const emergentX = separationX + alignmentX * 0.6 + cohesionX * 0.4;
-            const emergentY = separationY + alignmentY * 0.6 + cohesionY * 0.4;
+            // Combine movements for natural flying pattern
+            const flightX = sweepX + orbitX * 0.6;
+            const flightY = sweepY + orbitY * 0.8;
             
             return (
               <motion.div
                 key={particle.id}
                 className={`absolute rounded-full ${
                   particle.color === 'coral' ? 'bg-coral' : 'bg-navy'
-                } ${isLeader ? 'ring-1 ring-white/20' : ''}`}
+                } ${isLeader ? 'ring-1 ring-white/10' : ''}`}
                 style={{
                   width: particle.size,
                   height: particle.size,
@@ -130,28 +124,28 @@ export default function HeroSection() {
                 animate={{
                   x: [
                     particle.x,
-                    particle.x + emergentX * 0.7,
-                    particle.x + emergentX * 1.2,
-                    particle.x + emergentX * 0.5,
-                    particle.x + emergentX * 1.0,
-                    particle.x + emergentX * 0.3,
+                    particle.x + flightX * 0.3,
+                    particle.x + flightX * 0.7,
+                    particle.x + flightX * 1.0,
+                    particle.x + flightX * 0.8,
+                    particle.x + flightX * 0.4,
                     particle.x,
                   ],
                   y: [
                     particle.y,
-                    particle.y + emergentY * 0.8,
-                    particle.y + emergentY * 1.3,
-                    particle.y + emergentY * 0.6,
-                    particle.y + emergentY * 1.1,
-                    particle.y + emergentY * 0.4,
+                    particle.y + flightY * 0.4,
+                    particle.y + flightY * 0.8,
+                    particle.y + flightY * 1.0,
+                    particle.y + flightY * 0.6,
+                    particle.y + flightY * 0.2,
                     particle.y,
                   ],
                 }}
                 transition={{
-                  duration: 4 + (particle.id % 4) * 0.3,
+                  duration: 8 + (particle.id % 6),
                   repeat: Infinity,
                   ease: "easeInOut",
-                  delay: particle.id * 0.03,
+                  delay: particle.id * 0.08,
                 }}
               />
             );
