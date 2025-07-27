@@ -1,8 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
 :root {
   --background: hsl(0, 0%, 100%);
@@ -77,51 +77,51 @@
   }
   
   .text-coral {
-    color: hsl(var(--coral));
+    color: hsl(7, 100%, 67%) !important;
   }
   
   .text-navy {
-    color: hsl(var(--navy));
+    color: hsl(224, 76%, 32%) !important;
   }
   
   .text-warm-gray {
-    color: hsl(var(--warm-gray));
+    color: hsl(215, 16%, 47%) !important;
   }
   
   .bg-coral {
-    background-color: hsl(var(--coral));
+    background-color: hsl(7, 100%, 67%) !important;
   }
   
   .bg-navy {
-    background-color: hsl(var(--navy));
+    background-color: hsl(224, 76%, 32%) !important;
   }
   
   .bg-light-coral {
-    background-color: hsl(var(--light-coral));
+    background-color: hsl(7, 100%, 95%) !important;
   }
   
   .border-coral {
-    border-color: hsl(var(--coral));
+    border-color: hsl(7, 100%, 67%) !important;
   }
   
   .border-navy {
-    border-color: hsl(var(--navy));
+    border-color: hsl(224, 76%, 32%) !important;
   }
   
   .hover\:bg-coral:hover {
-    background-color: hsl(var(--coral));
+    background-color: hsl(7, 100%, 67%) !important;
   }
   
   .hover\:text-coral:hover {
-    color: hsl(var(--coral));
+    color: hsl(7, 100%, 67%) !important;
   }
   
   .hover\:text-navy:hover {
-    color: hsl(var(--navy));
+    color: hsl(224, 76%, 32%) !important;
   }
   
   .focus\:ring-coral:focus {
-    --tw-ring-color: hsl(var(--coral));
+    --tw-ring-color: hsl(7, 100%, 67%);
   }
   
   .glass-effect {
@@ -130,7 +130,7 @@
   }
   
   .gradient-bg {
-    background: linear-gradient(-45deg, hsl(var(--coral)), hsl(var(--navy)), hsl(var(--coral)), hsl(var(--navy)));
+    background: linear-gradient(-45deg, hsl(7, 100%, 67%), hsl(224, 76%, 32%), hsl(7, 100%, 67%), hsl(224, 76%, 32%));
     background-size: 400% 400%;
     animation: gradientShift 8s ease infinite;
   }
@@ -139,5 +139,13 @@
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
+  }
+  
+  .asymmetric-image {
+    border-radius: 2rem 2rem 2rem 0;
+  }
+  
+  .asymmetric-image-alt {
+    border-radius: 2rem 0 2rem 2rem;
   }
 }

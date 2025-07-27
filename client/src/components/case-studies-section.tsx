@@ -68,7 +68,7 @@ export default function CaseStudiesSection() {
                 <img
                   src={study.image}
                   alt={study.title}
-                  className="rounded-2xl shadow-lg w-full"
+                  className={`shadow-lg w-full ${index % 2 === 0 ? 'asymmetric-image' : 'asymmetric-image-alt'}`}
                 />
               </div>
               <div className={index % 2 === 1 ? "md:order-1" : ""}>

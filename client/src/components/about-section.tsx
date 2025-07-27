@@ -40,7 +40,7 @@ export default function AboutSection() {
             <img
               src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=800"
               alt="Nathan Waterhouse, Founder of Adaptive Edge"
-              className="rounded-2xl shadow-2xl w-full max-w-md mx-auto"
+              className="asymmetric-image shadow-2xl w-full max-w-md mx-auto"
             />
 
             <div className="mt-8 text-center">
