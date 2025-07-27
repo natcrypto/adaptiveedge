@@ -1,0 +1,114 @@
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Menu, X } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
+
+export default function Navigation() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const isMobile = useIsMobile();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 100);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+      setIsOpen(false);
+    }
+  };
+
+  const navItems = [
+    { label: "Home", id: "home" },
+    { label: "About", id: "about" },
+    { label: "Services", id: "services" },
+    { label: "Tools", id: "tools" },
+    { label: "Case Studies", id: "case-studies" },
+  ];
+
+  return (
+    <nav
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        scrolled ? "glass-effect shadow-lg" : "bg-transparent"
+      }`}
+    >
+      <div className="max-w-6xl mx-auto px-6 py-4">
+        <div className="flex justify-between items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="text-2xl font-serif font-bold text-navy cursor-pointer"
+            onClick={() => scrollToSection("home")}
+          >
+            Adaptive Edge
+          </motion.div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex space-x-8 items-center">
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className="text-warm-gray hover:text-coral transition-colors duration-300"
+              >
+                {item.label}
+              </button>
+            ))}
+            <button
+              onClick={() => scrollToSection("contact")}
+              className="bg-coral text-white px-6 py-2 rounded-full hover:bg-opacity-90 transition-all duration-300"
+            >
+              Contact
+            </button>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden text-warm-gray"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+
+        {/* Mobile Navigation Menu */}
+        {isMobile && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{
+              opacity: isOpen ? 1 : 0,
+              height: isOpen ? "auto" : 0,
+            }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden overflow-hidden"
+          >
+            <div className="mt-4 space-y-4">
+              {navItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className="block w-full text-left text-warm-gray hover:text-coral transition-colors duration-300"
+                >
+                  {item.label}
+                </button>
+              ))}
+              <button
+                onClick={() => scrollToSection("contact")}
+                className="block w-full bg-coral text-white px-6 py-2 rounded-full hover:bg-opacity-90 transition-all duration-300 text-center"
+              >
+                Contact
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </div>
+    </nav>
+  );
+}
