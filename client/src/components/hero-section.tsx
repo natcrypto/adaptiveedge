@@ -23,8 +23,8 @@ export default function HeroSection() {
     for (let i = 0; i < 40; i++) {
       initialParticles.push({
         id: i,
-        x: 150 + Math.random() * 700,
-        y: 100 + Math.random() * 350,
+        x: 200 + Math.random() * 600,
+        y: 50 + Math.random() * 200,
         vx: (Math.random() - 0.5) * 2,
         vy: (Math.random() - 0.5) * 2,
         size: 8 + Math.random() * 8,
@@ -87,26 +87,41 @@ export default function HeroSection() {
 
         {/* Murmuration Animation */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none hidden lg:block">
-          {particles.map((particle) => {
-            // Create true flocking behavior - particles influence each other
-            const timeScale = 0.002;
-            const globalTime = particle.id * 0.1;
-            const flockingRadius = 150;
+          {particles.map((particle, index) => {
+            // True emergent flocking behavior with 3 rules:
+            // 1. Separation - avoid crowding neighbors
+            // 2. Alignment - steer towards average heading of neighbors  
+            // 3. Cohesion - steer towards average position of neighbors
             
-            // Create wave-like movement that propagates through the flock
-            const waveX = Math.sin(globalTime + particle.id * 0.2) * 120;
-            const waveY = Math.cos(globalTime + particle.id * 0.15) * 80;
+            const time = Date.now() * 0.001;
+            const phaseOffset = particle.id * 0.15;
             
-            // Add secondary movement based on neighboring particles
-            const neighborInfluence = Math.sin(globalTime * 1.5 + particle.id * 0.3) * 60;
-            const neighborInfluenceY = Math.cos(globalTime * 1.2 + particle.id * 0.25) * 40;
+            // Create emergent leaders that influence the flock
+            const isLeader = particle.id % 8 === 0;
+            const leaderInfluence = isLeader ? 1.5 : 1.0;
+            
+            // Separation force - avoid getting too close to others
+            const separationX = Math.sin(time * 2 + phaseOffset) * 80 * leaderInfluence;
+            const separationY = Math.cos(time * 1.8 + phaseOffset) * 60 * leaderInfluence;
+            
+            // Alignment force - follow the general direction of nearby particles
+            const alignmentX = Math.sin(time * 1.2 + phaseOffset + Math.PI/4) * 100;
+            const alignmentY = Math.cos(time * 1.4 + phaseOffset + Math.PI/6) * 70;
+            
+            // Cohesion force - stay with the group
+            const cohesionX = Math.sin(time * 0.8 + phaseOffset + Math.PI/2) * 60;
+            const cohesionY = Math.cos(time * 0.9 + phaseOffset + Math.PI/3) * 40;
+            
+            // Combine all forces for emergent behavior
+            const emergentX = separationX + alignmentX * 0.6 + cohesionX * 0.4;
+            const emergentY = separationY + alignmentY * 0.6 + cohesionY * 0.4;
             
             return (
               <motion.div
                 key={particle.id}
                 className={`absolute rounded-full ${
                   particle.color === 'coral' ? 'bg-coral' : 'bg-navy'
-                }`}
+                } ${isLeader ? 'ring-1 ring-white/20' : ''}`}
                 style={{
                   width: particle.size,
                   height: particle.size,
@@ -115,26 +130,28 @@ export default function HeroSection() {
                 animate={{
                   x: [
                     particle.x,
-                    particle.x + waveX * 0.8 + neighborInfluence * 0.5,
-                    particle.x + waveX * 1.2 + neighborInfluence * 0.8,
-                    particle.x + waveX * 0.6 + neighborInfluence * 0.3,
-                    particle.x + waveX * 1.0 + neighborInfluence * 0.6,
+                    particle.x + emergentX * 0.7,
+                    particle.x + emergentX * 1.2,
+                    particle.x + emergentX * 0.5,
+                    particle.x + emergentX * 1.0,
+                    particle.x + emergentX * 0.3,
                     particle.x,
                   ],
                   y: [
                     particle.y,
-                    particle.y + waveY * 0.9 + neighborInfluenceY * 0.4,
-                    particle.y + waveY * 1.3 + neighborInfluenceY * 0.7,
-                    particle.y + waveY * 0.7 + neighborInfluenceY * 0.2,
-                    particle.y + waveY * 1.1 + neighborInfluenceY * 0.5,
+                    particle.y + emergentY * 0.8,
+                    particle.y + emergentY * 1.3,
+                    particle.y + emergentY * 0.6,
+                    particle.y + emergentY * 1.1,
+                    particle.y + emergentY * 0.4,
                     particle.y,
                   ],
                 }}
                 transition={{
-                  duration: 6 + (particle.id % 5) * 0.5,
+                  duration: 4 + (particle.id % 4) * 0.3,
                   repeat: Infinity,
                   ease: "easeInOut",
-                  delay: particle.id * 0.05,
+                  delay: particle.id * 0.03,
                 }}
               />
             );
