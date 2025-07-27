@@ -1,8 +1,16 @@
 import { motion } from "framer-motion";
 import { Target, Layers, Gamepad2, Search, GitBranch, Settings } from "lucide-react";
 
+interface Tool {
+  icon: any;
+  title: string;
+  description: string;
+  color: string;
+  link?: string;
+}
+
 export default function ToolsSection() {
-  const tools = [
+  const tools: Tool[] = [
     {
       icon: Target,
       title: "IMPACT Prompting Framework",
@@ -20,12 +28,14 @@ export default function ToolsSection() {
       title: "Innovation Priorities Card Game",
       description: "Gamified workshop tool for collaborative prioritization and strategic decision-making.",
       color: "bg-coral",
+      link: "https://innovationpriorities.com/",
     },
     {
       icon: Search,
-      title: "AI Research Assistant",
-      description: "Leveraging AI for deeper, broader research that informs strategic recommendations.",
+      title: "Power Canvas",
+      description: "A tool that helps spot power dynamics issues based on the structure of your organisation, enabling more effective collaboration and decision-making.",
       color: "bg-navy",
+      link: "https://power.adaptiveedge.uk/",
     },
     {
       icon: GitBranch,
@@ -61,29 +71,41 @@ export default function ToolsSection() {
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {tools.map((tool, index) => (
-            <motion.div
-              key={tool.title}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -4 }}
-              className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              <div
-                className={`w-12 h-12 ${tool.color} rounded-xl flex items-center justify-center mb-4`}
+          {tools.map((tool, index) => {
+            const ToolWrapper = tool.link ? 'a' : 'div';
+            const wrapperProps = tool.link ? {
+              href: tool.link,
+              target: "_blank",
+              rel: "noopener noreferrer",
+              className: "block"
+            } : {};
+            
+            return (
+              <motion.div
+                key={tool.title}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -4 }}
+                className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
               >
-                <tool.icon className="text-white" size={20} />
-              </div>
-              <h3 className="text-xl font-serif font-bold text-navy mb-3">
-                {tool.title}
-              </h3>
-              <p className="text-warm-gray text-sm leading-relaxed">
-                {tool.description}
-              </p>
-            </motion.div>
-          ))}
+                <ToolWrapper {...wrapperProps}>
+                  <div
+                    className={`w-12 h-12 ${tool.color} rounded-xl flex items-center justify-center mb-4`}
+                  >
+                    <tool.icon className="text-white" size={20} />
+                  </div>
+                  <h3 className="text-xl font-serif font-bold text-navy mb-3">
+                    {tool.title}
+                  </h3>
+                  <p className="text-warm-gray text-sm leading-relaxed">
+                    {tool.description}
+                  </p>
+                </ToolWrapper>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
