@@ -6,12 +6,12 @@ This is a modern, full-stack web application for Adaptive Edge, a strategy and i
 
 ## Recent Changes
 
+- **January 28, 2025**: Set up PostgreSQL database for production deployment
+- **January 28, 2025**: Migrated from in-memory to database storage for contact forms
+- **January 28, 2025**: Created production deployment documentation for adaptiveedge.uk
 - **January 27, 2025**: Implemented playful cursor interaction with bird-like movement
 - **January 27, 2025**: Enhanced murmuration animation with true emergent flocking behavior
 - **January 27, 2025**: Added GitHub-ready documentation and project structure
-- **January 27, 2025**: Fixed CSS import order and restored vibrant coral/navy brand colors
-- **January 27, 2025**: Added asymmetric image styling with non-curved corners for visual interest
-- **January 27, 2025**: Applied asymmetric styling to profile and case study images
 
 ## User Preferences
 
