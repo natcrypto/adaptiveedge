@@ -18,7 +18,7 @@ interface ContactFormEmailParams {
 
 export async function sendContactFormNotification(
   params: ContactFormEmailParams,
-  notificationEmail: string = process.env.NOTIFICATION_EMAIL || "hello@adaptiveedge.uk"
+  notificationEmail: string = "nathan@adaptiveedge.uk"
 ): Promise<boolean> {
   try {
     const emailHtml = `
@@ -89,8 +89,8 @@ Submission ID: ${params.submissionId}
 Reply to: ${params.email}
     `;
 
-    // Use a verified SendGrid sender address - this should be from your SendGrid account
-    const fromEmail = process.env.SENDGRID_FROM_EMAIL || 'noreply@adaptiveedge.uk';
+    // Use verified sender address
+    const fromEmail = 'nathan@adaptiveedge.uk';
     
     await mailService.send({
       to: notificationEmail,
@@ -155,7 +155,7 @@ export async function sendContactFormConfirmation(
     `;
 
     // Use verified sender for confirmation emails too
-    const fromEmail = process.env.SENDGRID_FROM_EMAIL || 'hello@adaptiveedge.uk';
+    const fromEmail = 'nathan@adaptiveedge.uk';
     
     await mailService.send({
       to: params.email,
