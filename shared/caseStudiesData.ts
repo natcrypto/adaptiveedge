@@ -17,10 +17,10 @@ A magician was brought in whose craft served as a metaphor for organizational tr
     impact: `The feedback was overwhelmingly positive. Participants left not only informed but energized, having engaged with strategic material in surprising and enjoyable ways. Leadership gained new perspectives from participant insights, which shaped their approach to risk, compliance, and operational excellence.
 
 The resources and tools created continue to serve as lasting assets, allowing Freudenberg to communicate and embed these strategic updates across their vast global organization. This case demonstrates the power of combining strategic depth with creative engagement to ensure lasting impact.`,
-    role: 'Strategic design collaborator with Treehouse Innovation, contributing to workshop design, creative concepting, and ensuring complex strategic content translated into engaging, accessible experiences.',
+    role: 'As project lead for Treehouse Innovation, Nathan directed the design, planning, and delivery of Dialog 2024. Worked closely with senior leaders to shape the strategic storyline, coordinated the creative and facilitation teams, and ensured the final experience translated sophisticated organisational content into clear, immersive sessions for participants.',
     featured: true,
     treeHouseAttribution: 'Work delivered in partnership with Treehouse Innovation',
-    image: '/attached_assets/image_1763107075364.png',
+    image: '/attached_assets/PXL_20240606_124805750_1763109367377.jpg',
   },
   {
     slug: 'sandvik-coromant-future-vision',
