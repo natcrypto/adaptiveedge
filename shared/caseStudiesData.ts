@@ -35,7 +35,7 @@ This led to a meticulously planned one-and-a-half-day strategic forum in Sweden,
     role: 'Collaborative strategy partner with Treehouse Innovation, contributing to research design, facilitation planning, and helping translate strategic insights into actionable collective vision.',
     featured: true,
     treeHouseAttribution: 'Work delivered in partnership with Treehouse Innovation',
-    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800',
+    image: '/attached_assets/image_1763107247181.png',
   },
   {
     slug: 'sky-innovation-programme',
