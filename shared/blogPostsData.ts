@@ -31,6 +31,7 @@ In this piece, we examine how creative thinking capabilities serve as the founda
 [Read the full article on LinkedIn](https://www.linkedin.com/pulse/beyond-learning-curve-how-creative-thinking-powers-waterhouse)`,
     linkedinUrl: 'https://www.linkedin.com/pulse/beyond-learning-curve-how-creative-thinking-powers-waterhouse',
     featured: true,
+    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800',
   },
   {
     slug: 'why-were-brilliant-at-how',
