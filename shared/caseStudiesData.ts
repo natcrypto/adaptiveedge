@@ -52,7 +52,7 @@ The programme also featured an assessment of leaders' own team culture of innova
     role: 'Innovation programme collaborator with Treehouse Innovation, contributing to design sprint facilitation, prototype development, and ensuring the programme matched Sky\'s unique culture.',
     featured: true,
     treeHouseAttribution: 'Work delivered in partnership with Treehouse Innovation',
-    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800',
+    image: '/attached_assets/sky Better innovation_1763111039670.png',
   },
   {
     slug: 'sky-creating-facilitators',
@@ -122,7 +122,7 @@ Through conversations with supply chain colleagues, the team gathered invaluable
     role: 'Human-centered design collaborator with Treehouse Innovation, contributing to workshop design, facilitating empathy-building exercises, and helping translate insights into system-level improvements.',
     featured: false,
     treeHouseAttribution: 'Work delivered in partnership with Treehouse Innovation',
-    image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800',
+    image: '/attached_assets/astra_1763111039670.png',
   },
 ];
 
