@@ -20,7 +20,7 @@ The resources and tools created continue to serve as lasting assets, allowing Fr
     role: 'As project lead for Treehouse Innovation, Nathan directed the design, planning, and delivery of Dialog 2024. Worked closely with senior leaders to shape the strategic storyline, coordinated the creative and facilitation teams, and ensured the final experience translated sophisticated organisational content into clear, immersive sessions for participants.',
     featured: true,
     treeHouseAttribution: 'Work delivered in partnership with Treehouse Innovation',
-    image: '/attached_assets/PXL_20240606_124805750_1763109367377.jpg',
+    image: '/attached_assets/freudenberg_1763112872285.png',
   },
   {
     slug: 'sandvik-coromant-future-vision',
@@ -52,7 +52,7 @@ The programme also featured an assessment of leaders' own team culture of innova
     role: 'Innovation programme collaborator with Treehouse Innovation, contributing to design sprint facilitation, prototype development, and ensuring the programme matched Sky\'s unique culture.',
     featured: true,
     treeHouseAttribution: 'Work delivered in partnership with Treehouse Innovation',
-    image: '/attached_assets/sky Better innovation_1763111039670.png',
+    image: '/attached_assets/sky-Better-innovation_1763112872286.png',
   },
   {
     slug: 'sky-creating-facilitators',
@@ -69,7 +69,7 @@ Participants were given the chance to practice running sessions and receive feed
     role: 'Capability building collaborator with Treehouse Innovation, contributing to curriculum design, facilitation training, and developing practical tools for new internal facilitators.',
     featured: false,
     treeHouseAttribution: 'Work delivered in partnership with Treehouse Innovation',
-    image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800',
+    image: '/attached_assets/SKy-labs_1763112872286.png',
   },
   {
     slug: 'sky-people-partners',
@@ -105,7 +105,7 @@ Virtual workshops were run to brainstorm improvements, then 50 people—includin
     role: 'Patient-centered design collaborator with Treehouse Innovation and Experience Point, contributing to research design, facilitating sensitive patient conversations, and translating insights into actionable improvements.',
     featured: true,
     treeHouseAttribution: 'Work delivered in partnership with Treehouse Innovation and Experience Point',
-    image: '/attached_assets/image_1763107634262.png',
+    image: '/attached_assets/nuvance_1763112911250.png',
   },
   {
     slug: 'astrazeneca-human-centered-design',
@@ -122,7 +122,7 @@ Through conversations with supply chain colleagues, the team gathered invaluable
     role: 'Human-centered design collaborator with Treehouse Innovation, contributing to workshop design, facilitating empathy-building exercises, and helping translate insights into system-level improvements.',
     featured: false,
     treeHouseAttribution: 'Work delivered in partnership with Treehouse Innovation',
-    image: '/attached_assets/astra_1763111039670.png',
+    image: '/attached_assets/astra_1763112872285.png',
   },
 ];
 
