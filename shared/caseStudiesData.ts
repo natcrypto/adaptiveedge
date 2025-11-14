@@ -20,7 +20,7 @@ The resources and tools created continue to serve as lasting assets, allowing Fr
     role: 'Strategic design collaborator with Treehouse Innovation, contributing to workshop design, creative concepting, and ensuring complex strategic content translated into engaging, accessible experiences.',
     featured: true,
     treeHouseAttribution: 'Work delivered in partnership with Treehouse Innovation',
-    image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800',
+    image: '/attached_assets/image_1763107075364.png',
   },
   {
     slug: 'sandvik-coromant-future-vision',
